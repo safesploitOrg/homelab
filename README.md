@@ -2,6 +2,14 @@
 
 A homelab focused on secure, automated, and reproducible infrastructure. Built to test and refine DevSecOps workflows, infrastructure-as-code, and system architecture best practices.
 
+# Table of Contents
+
+  - [Homelab Philosophy / Principles](#homelab-philosophy--principles)
+  - [Provisioning & Stack](#provisioning--stack)
+  - [Hardware](#hardware)
+  - [🚀 Deployment Workflow](#-deployment-workflow)
+  - [🛣️ Planned Enhancements](#-planned-enhancements)
+
 
 ## Homelab Philosophy / Principles
 
