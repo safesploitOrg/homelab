@@ -3,7 +3,7 @@
 A homelab focused on secure, automated, and reproducible infrastructure. Built to test and refine DevSecOps workflows, infrastructure-as-code, and system architecture best practices.
 
 
-## Homelab Philosophy / Principles
+## Homelab Philosophy / Principles
 
 - 🔐 **DevSecOps-first** — secure-by-default, secrets managed outside repo (Vault)
 - ⚙️ **Automate everything** — from provisioning to updates
