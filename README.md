@@ -113,7 +113,7 @@ This strategy enables **secure-by-default provisioning**: any newly created VM o
 
 | Device  | Model            | Drives                                                              | Notes                        |
 |---------|------------------|---------------------------------------------------------------------|------------------------------|
-| NAS1    | Asustor AS-606T  | 1× Samsung EVO 850 250 GB SSD<br>2× Seagate 1 TB 7200RPM HDD        | Archival, backup, media use  |
+| NAS1    | Asustor AS-606T  | <ul><li>Samsung EVO 850 250 GB SSD</li><li>2xSeagate 1 TB 7200 RPM HDD</li></ul>        | Archival, backup, media use  |
 
 ---
 
