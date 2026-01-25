@@ -1,6 +1,6 @@
 ## Ceph Storage Fabric Upgrade
 
-To isolate critical Ceph cluster traffic from the management plane and increase storage performance, a **dedicated Ceph fabric** was introduced in 2026.
+To isolate critical Ceph cluster traffic from the management plane and increase storage performance, a **dedicated Ceph fabric**.
 
 ### 🔧 Hardware
 
