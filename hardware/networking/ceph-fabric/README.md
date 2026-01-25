@@ -1,8 +1,8 @@
-## Ceph Storage Fabric Upgrade
+# Ceph Storage Fabric Upgrade
 
 To isolate critical Ceph cluster traffic from the management plane and increase storage performance, a **dedicated Ceph fabric**.
 
-### 🔧 Hardware
+## 🔧 Hardware
 
 - **Switch**: [UGREEN 2.5Gbps x5 + 10Gbps SFP+ unmanaged switch](https://www.amazon.co.uk/dp/B0DXPDZPSQ)
 - **Connectivity**: USB 2.5GbE adapters connected directly to each Proxmox node
@@ -10,7 +10,7 @@ To isolate critical Ceph cluster traffic from the management plane and increase 
 
 ---
 
-### 🌐 Ceph Fabric Subnet
+## 🌐 Ceph Fabric Subnet
 
 | Node  | Fabric IP     | Interface           | Note                      |
 |-------|---------------|---------------------|---------------------------|
@@ -24,7 +24,7 @@ To isolate critical Ceph cluster traffic from the management plane and increase 
 
 ---
 
-### 📄 Migration Documentation
+## 📄 Migration Documentation
 
 A full migration guide detailing the network changes and Ceph reconfiguration is available in the [`docs`](https://github.com/safesploitOrg/docs/tree/main/best-practices/linux/storage/ceph/ceph-change-network) repo:
 
@@ -34,7 +34,7 @@ A full migration guide detailing the network changes and Ceph reconfiguration is
 
 ---
 
-### Ceph Fabric Diagram
+## Ceph Fabric Diagram
 ```mermaid
 graph TD
     subgraph Ceph Fabric Network
