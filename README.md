@@ -7,6 +7,7 @@ A homelab focused on secure, automated, and reproducible infrastructure. Built t
   - [Homelab Philosophy / Principles](#homelab-philosophy--principles)
   - [Provisioning & Stack](#provisioning--stack)
   - [Hardware](#hardware)
+  - [Architecture](#architecture)
   - [🚀 Deployment Workflow](#-deployment-workflow)
   - [🛣️ Planned Enhancements](#-planned-enhancements)
 
@@ -126,6 +127,74 @@ This strategy enables **secure-by-default provisioning**: any newly created VM o
 | Node `pve5`  | HP T730 ThinClient         | Proxmox VE host<br>Ran pfSense virtualised (Quad 2.5GbE)    | Retired in favour of GL.iNet AXT1800   |
 | Core Switch  | Cisco 3750X               | Enterprise L3 switch                                        | Retired (too noisy/power hungry)       |
 | Router       | TP-Link ER605             | WAN/Firewall Router                                         | Replaced with GL.iNet AXT1800          |
+
+---
+
+### Architecture
+
+- ⚫ **Black** — Source control
+- 🟣 **Purple** —  IaC - automation and configuration management
+- 🟠 **Orange** — Virtualisation platform
+- 🔴 **Red** — Network and security enforcement
+- 🔵 **Blue** — Guests and workloads
+- 🟢 **Teal** — Infrastructure services
+- ⚪ **Grey** — Monitoring and backup
+
+```mermaid
+flowchart TD
+    GIT[Git repositories] --> TF[Terraform]
+    GIT --> ANS[Ansible]
+    GIT --> DNS[DNS configs]
+
+    TF --> PVE[Proxmox VE]
+
+    GUEST[Guests<br/>LXC / VMs]
+
+    PVE --> PVEFW
+    ANS --> GUEST
+    DNS --> RESOLVER[DNS infrastructure]
+
+    OPENWRT[OpenWrt<br/>Router / Firewall] --> PVE
+    PVEFW[Proxmox guest firewall] --> GUEST
+
+    MON[Checkmk / Wazuh / Prometheus] --> GUEST
+    PBS[Proxmox Backup Server] --> PVE
+
+    %% Source control
+    classDef source fill:#24292f,color:#ffffff,stroke:#57606a,stroke-width:2px
+
+    %% Automation and configuration
+    classDef automation fill:#7b42bc,color:#ffffff,stroke:#5a2d91,stroke-width:2px
+
+    %% Virtualisation platform
+    classDef platform fill:#e57000,color:#ffffff,stroke:#a84e00,stroke-width:2px
+
+    %% Network and security
+    classDef security fill:#c62828,color:#ffffff,stroke:#8e0000,stroke-width:2px
+
+    %% Guests and workloads
+    classDef workload fill:#1976d2,color:#ffffff,stroke:#0d47a1,stroke-width:2px
+
+    %% Infrastructure services
+    classDef service fill:#00897b,color:#ffffff,stroke:#005b4f,stroke-width:2px
+
+    %% Monitoring and backup
+    classDef operations fill:#546e7a,color:#ffffff,stroke:#29434e,stroke-width:2px
+
+    class GIT source
+
+    class TF,ANS automation
+
+    class PVE platform
+
+    class OPENWRT,PVEFW security
+
+    class GUEST workload
+
+    class DNS,RESOLVER service
+
+    class MON,PBS operations
+```
 
 ---
 
