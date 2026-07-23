@@ -62,14 +62,16 @@ A homelab focused on secure, automated, and reproducible infrastructure. Built t
 
 ### 🛡️ Firewall Strategy
 
-This homelab uses **Proxmox VE's built-in firewall system** as the primary enforcement layer — replacing traditional hardware firewall appliances.
+- **Proxmox VE Firewall** is the _primary enforcement layer_ for guest isolation and service-specific access control.
+- **OpenWRT** Zone-Based Firewall handles routing, perimeter security, VPN access and some inter-network policy.
 
 **Key characteristics:**
 
 - 🧱 **Datacenter-level policies**: Define default deny/allow rules across the cluster
-- 🔒 **VM-level isolation**: Service-specific rules per guest (e.g. allow SSH only from approved IPs)
+- 🔒 **Guest-level isolation**: Service-specific rules per guest (e.g. allow SSH only from approved IPs)
 - 🌐 **Bridge interface rules**: VLAN-based segmentation (e.g. restrict inter-VLAN traffic)
-- 📁 **Templated configs**: Ansible roles enforce baseline firewall states per VM group
+- 🖥️ **Hypervisor-edge enforcement**: Proxmox applies filtering outside the guest operating system, reducing reliance on controls that a compromised guest could modify.
+- 📁 **Configuration as code**: Terraform manages guest firewall enablement, default policies and approved security-group attachments.
 
 **Benefits:**
 
@@ -79,9 +81,7 @@ This homelab uses **Proxmox VE's built-in firewall system** as the primary enfor
 
 This strategy enables **secure-by-default provisioning**: any newly created VM or container has a defined, scoped access profile enforced at the hypervisor layer.
 
-> 🔐 All VM and interface firewall rules are version-controlled and reviewed alongside infra code.
-
-
+> 🔐 All VM and interface firewall rules are version-controlled and reviewed alongside infrastructure code.
 
 ---
 
@@ -94,6 +94,7 @@ This strategy enables **secure-by-default provisioning**: any newly created VM o
 | pve2          | HP EliteDesk 800 G2 Mini| Intel i5-6600T (4C/4T) | 64 GiB  | Samsung 980 1 TB NVMe + WD Blue SA510 2 TB  | Proxmox VE node, Ceph OSD                          |
 | pve3          | HP EliteDesk 800 G2 Mini| Intel i5-6600T (4C/4T) | 64 GiB  | Samsung 980 1 TB NVMe + WD Blue SA510 2 TB  | Proxmox VE node, Ceph OSD                          |
 | pve4          | HP EliteDesk 800 G2 Mini| Intel i5-6600T (4C/4T) | 64 GiB  | Samsung 980 1 TB NVMe + WD Blue SA510 2 TB  | Proxmox VE node, Ceph OSD                          |
+| pve6          | Dell OptiPlex 7440      | Intel i5-6600T (4C/4T) | 8 GiB   | 256 GB SSD (SATA)                           | Proxmox VE node (standalone)                      |
 | Pi-KVM        | Raspberry Pi 4          | ARM Cortex-A72 (4C)    | 4 GiB   | MicroSD / USB Boot                          | Out-of-band KVM access (Geekworm KVM-A3)          |
 | PKI Authority | Raspberry Pi 3          | ARM Cortex-A53 (4C)    | 1 GiB   | MicroSD                                     | Self-hosted Root CA / Intermediate CA (PKI host)  |
 
